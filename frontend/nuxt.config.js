@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   /*
   ** Headers of the page
   */
@@ -42,5 +42,23 @@ module.exports = {
   auth0: {
     domain: 'taniiiiim.jp.auth0.com',
     clientID: 'uIBpfmxxhaWuGY2DbhVNCsnFkWbjl7JV'
+  },
+  generate: {
+    dir: '../public'
+  },
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
+  ],
+  axios: {
+    baseURL: '/'
   }
 }
+
+if (process.env.NODE_ENV === 'development') {
+  config.proxy = {
+    '/api': 'http://localhost:3000'
+  }
+}
+
+module.exports = config
