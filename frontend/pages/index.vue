@@ -16,6 +16,7 @@
         </nuxt-link>
       </div>
       <button class="button is-primary" @click="ping">Ping</button>
+      <button class="button is-danger" @click="secured">Secured</button>
     </div>
   </section>
 </template>
@@ -28,6 +29,17 @@ export default {
     },
     async ping() {
       const ret = await this.$axios.$get('/api/v1/ping')
+      console.log(ret)
+    },
+    async secured() {
+      const ret = await this.$axios.$get(
+        '/api/v1/secured',
+        {
+          headers: {
+            Authorization: 'Bearer ' + this.$auth0.getIdToken()
+          }
+        }
+      )
       console.log(ret)
     }
   }
