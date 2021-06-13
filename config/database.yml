@@ -50,6 +50,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: nuxt_auth0_production
   username: nuxt_auth0
   password: <%= ENV['NUXT_AUTH0_DATABASE_PASSWORD'] %>
